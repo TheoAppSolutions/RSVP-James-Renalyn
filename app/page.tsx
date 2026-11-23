@@ -3,6 +3,7 @@ import Countdown from "@/components/invitation/Countdown";
 import MapSection from "@/components/invitation/MapSection";
 import Attire from "@/components/invitation/Attire";
 import GoodToKnow from "@/components/invitation/GoodToKnow";
+import Gallery from "@/components/invitation/Gallery";
 import RsvpForm from "@/components/invitation/RsvpForm";
 import { EVENT } from "@/lib/event";
 
@@ -13,6 +14,7 @@ export default function Home() {
         <Countdown />
         <MapSection />
         <Attire />
+        <Gallery />
         <GoodToKnow />
         <section id="rsvp" className="rsvp-section" aria-labelledby="rsvp-title">
           <div className="rsvp-section-inner">

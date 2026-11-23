@@ -1,47 +1,40 @@
 import { EVENT } from "@/lib/event";
-import { getVenueDirectionsUrl } from "@/lib/maps";
 
-const QUESTIONS = [
+const NOTES = [
   {
-    question: "When and where is the wedding?",
-    answer: (
-      <>
-        Join us on {EVENT.dateLong} at {EVENT.time} at {EVENT.venue.name}, {EVENT.venue.address}.
-      </>
-    ),
+    category: "Guest list",
+    question: "May I bring a plus-one?",
+    answer: "We have intentionally kept our guest list intimate so that we can celebrate with the people closest to us. Please join us only with the guest named on your invitation.",
   },
   {
-    question: "When should I reply?",
-    answer: <>Please send your RSVP by {EVENT.rsvpDeadline}.</>,
+    category: "Gift guide",
+    question: "Your presence is enough",
+    answer: "Having you with us is the greatest gift. If you would like to bless us as we begin married life, a monetary gift would be warmly appreciated—but please know that your presence means the most.",
   },
   {
-    question: "What should I wear?",
-    answer: (
-      <>
-        The dress code is {EVENT.dressCode.toLowerCase()}. Our garden colors are {EVENT.color.toLowerCase()}.
-      </>
-    ),
+    category: "Privacy notice",
+    question: "Be fully present with us",
+    answer: "Our ceremony will be unplugged. Kindly keep phones and cameras tucked away during the ceremony, and please wait for us to share first before posting wedding photos online.",
   },
   {
-    question: "How do I get to the venue?",
-    answer: (
-      <>
-        The venue is at {EVENT.venue.address}.{" "}
-        <a href={getVenueDirectionsUrl(EVENT.venue)} target="_blank" rel="noopener noreferrer">
-          Open directions ↗
-        </a>
-      </>
-    ),
+    category: "Time observance",
+    question: "We will begin on time",
+    answer: "We are grateful to everyone traveling to celebrate with us. Please arrive early enough to be seated before the ceremony begins, so we can honor the day’s timeline together.",
+  },
+  {
+    category: "Occasion focus",
+    question: "Today is about the couple",
+    answer: "Please save proposals, pregnancy announcements, and other major announcements for another occasion. Today is dedicated to celebrating Raymund and Vanessa.",
   },
 ];
 
 export default function GoodToKnow() {
   return (
-    <section id="faq" className="details-section section-pad" aria-labelledby="faq-title">
+    <section id="good-to-know" className="details-section section-pad" aria-labelledby="good-to-know-title">
       <div className="section-wrap details-layout">
         <div className="details-intro">
-          <span className="eyebrow">03 / Your questions</span>
-          <h2 id="faq-title" className="display-heading">Good to <em>know</em></h2>
+          <span className="eyebrow">03 / Good to know</span>
+          <h2 id="good-to-know-title" className="display-heading">Good to <em>know</em></h2>
           <p>Everything you need to plan for the celebration.</p>
           <div className="reply-note">
             <strong>Kindly reply by<br />{EVENT.rsvpDeadline}</strong>
@@ -50,11 +43,14 @@ export default function GoodToKnow() {
           </div>
         </div>
         <div className="details-list">
-          {QUESTIONS.map(({ question, answer }, index) => (
+          {NOTES.map(({ category, question, answer }, index) => (
             <details key={question}>
               <summary>
                 <span>0{index + 1}</span>
-                <strong>{question}</strong>
+                <div>
+                  <small>{category}</small>
+                  <strong>{question}</strong>
+                </div>
                 <i aria-hidden="true">+</i>
               </summary>
               <p>{answer}</p>

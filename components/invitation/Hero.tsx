@@ -21,7 +21,8 @@ export default function Hero() {
         <div className="nav-links">
           <a href="#venues">The day</a>
           <a href="#attire">Dress code</a>
-          <a href="#faq">FAQ</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#good-to-know">Good to know</a>
           <a href="#rsvp">RSVP</a>
         </div>
         <button type="button" onClick={goToRsvp} className="nav-rsvp">Reply <span aria-hidden="true">↗</span></button>
