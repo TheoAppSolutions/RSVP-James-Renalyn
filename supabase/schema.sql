@@ -1,4 +1,4 @@
-create table if not exists public.rsvp (
+create table if not exists public.james_renalyn (
   id uuid primary key default gen_random_uuid(),
   name text not null,
   message text,
@@ -7,4 +7,4 @@ create table if not exists public.rsvp (
 );
 
 -- Only the server (service role key) touches this table.
-alter table public.rsvp enable row level security;
+alter table public.james_renalyn enable row level security;

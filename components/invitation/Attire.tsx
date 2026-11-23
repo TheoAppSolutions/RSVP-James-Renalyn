@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { COLORS } from "@/lib/template-3-colors";
+import { COLORS } from "@/lib/colors";
 import { EVENT } from "@/lib/event";
 import { ATTIRE, createSwatches } from "@/lib/attire";
 
@@ -23,10 +23,10 @@ export default function Attire() {
       </svg>
       <div className="section-wrap attire-layout">
         <div className="attire-copy">
-          <span className="eyebrow">03 / What to wear</span>
+          <span className="eyebrow">02 / What to wear</span>
           <h2 id="attire-title" className="display-heading">Dress for the <em>occasion</em></h2>
           <p className="attire-type">{EVENT.dressCode}</p>
-          <p>Polished and refined: dressy, but not black tie. We would love to see you in shades of our dusty blue palette.</p>
+          <p>Casual or semi-formal attire is welcome. Our garden palette is {EVENT.color}.</p>
           <div className="swatch-list" role="group" aria-label="Choose an attire color to preview">
             {swatches.map((swatch) => <button key={swatch.name} type="button" onClick={() => setSelected(swatch)} aria-pressed={selected.name === swatch.name} aria-label={`Preview ${swatch.name} attire`} className={selected.name === swatch.name ? "selected" : ""}><span className="swatch-color" style={{ backgroundColor: swatch.color }} /><small>{swatch.name}</small></button>)}
           </div>
