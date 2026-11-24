@@ -1,5 +1,5 @@
 export const COLORS = {
-  50: "#F8F8F2",
+  50: "#F4F0E6",
   100: "#EEF1E6",
   200: "#DCE3CF",
   300: "#BDCCB3",

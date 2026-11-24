@@ -10,14 +10,26 @@ const swatches = createSwatches(COLORS);
 
 export default function Attire() {
   const [selected, setSelected] = useState<(typeof swatches)[number]>(swatches[2]);
+  const isOffWhite = selected.name === "Off-white";
 
   return (
     <section id="attire" className="attire-section section-pad" aria-labelledby="attire-title">
       <svg className="attire-filter-defs" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
         <filter id="attire-recolor" colorInterpolationFilters="sRGB">
-          <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -4 0 4 0 0" result="blue-mask" />
-          <feFlood floodColor={selected.color} floodOpacity="0.78" result="selected-color" />
-          <feComposite in="selected-color" in2="blue-mask" operator="in" result="tinted-clothing" />
+          <feColorMatrix in="SourceGraphic" type="matrix" values={`0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  ${isOffWhite ? "-12 0 12" : "-4 0 4"} 0 0`} result="blue-mask" />
+          <feFlood floodColor={selected.color} floodOpacity={isOffWhite ? 1 : 0.78} result="selected-color" />
+          {isOffWhite && (
+            <>
+              <feColorMatrix in="SourceGraphic" type="saturate" values="0" result="fabric-shading" />
+              <feComponentTransfer in="fabric-shading" result="light-fabric">
+                <feFuncR type="linear" slope="0.75" intercept="0.25" />
+                <feFuncG type="linear" slope="0.75" intercept="0.25" />
+                <feFuncB type="linear" slope="0.75" intercept="0.25" />
+              </feComponentTransfer>
+              <feBlend in="selected-color" in2="light-fabric" mode="multiply" result="shaded-off-white" />
+            </>
+          )}
+          <feComposite in={isOffWhite ? "shaded-off-white" : "selected-color"} in2="blue-mask" operator="in" result="tinted-clothing" />
           <feBlend in="tinted-clothing" in2="SourceGraphic" mode="normal" />
         </filter>
       </svg>
