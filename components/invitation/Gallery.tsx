@@ -2,23 +2,24 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { EVENT, MEDIA } from "@/lib/event";
 import { requestMusicPlayback } from "@/lib/music";
 
 // Landscape frames punctuate the portraits; each frame keeps its image's ratio.
 const photos = [
-  { name: "warm-embrace-portrait", width: 1067, height: 1600, alt: "James and Renalyn smiling in a warm embrace" },
-  { name: "uniform-smiles-portrait", width: 1067, height: 1600, alt: "James and Renalyn sharing a playful smile in uniform" },
-  { name: "seated-embrace-portrait", width: 1067, height: 1600, alt: "Renalyn embracing a seated James in camouflage" },
-  { name: "dress-uniform-portrait", width: 1067, height: 1600, alt: "James standing in dress uniform beside a seated Renalyn" },
-  { name: "playful-moment-landscape", width: 1600, height: 1067, alt: "James pointing toward Renalyn as she smiles across the frame" },
-  { name: "close-together-portrait", width: 1057, height: 1600, alt: "James and Renalyn leaning close together" },
-  { name: "standing-together-portrait", width: 1067, height: 1600, alt: "James in camouflage standing beside Renalyn on a stool" },
-  { name: "seated-uniform-portrait", width: 1067, height: 1600, alt: "Renalyn standing beside a seated James in camouflage and a beret" },
-  { name: "playful-embrace-portrait", width: 1067, height: 1600, alt: "Renalyn hugging James from behind with one foot lifted" },
-  { name: "seated-together-landscape", width: 1600, height: 1067, alt: "James and Renalyn sitting together on a stool and a white block" },
-  { name: "gentle-kiss-portrait", width: 1067, height: 1600, alt: "James giving Renalyn a gentle kiss on the side of her head" },
-  { name: "side-by-side-portrait", width: 1067, height: 1600, alt: "James and Renalyn posing side by side on stools" },
-  { name: "shared-glance-landscape", width: 1600, height: 1067, alt: "James and Renalyn exchanging a smile across a table" },
+  { name: "warm-embrace-portrait", width: 1067, height: 1600, alt: `${EVENT.groom} and ${EVENT.bride} smiling in a warm embrace` },
+  { name: "uniform-smiles-portrait", width: 1067, height: 1600, alt: `${EVENT.groom} and ${EVENT.bride} sharing a playful smile in uniform` },
+  { name: "seated-embrace-portrait", width: 1067, height: 1600, alt: `${EVENT.bride} embracing a seated ${EVENT.groom} in camouflage` },
+  { name: "dress-uniform-portrait", width: 1067, height: 1600, alt: `${EVENT.groom} standing in dress uniform beside a seated ${EVENT.bride}` },
+  { name: "playful-moment-landscape", width: 1600, height: 1067, alt: `${EVENT.groom} pointing toward ${EVENT.bride} as she smiles across the frame` },
+  { name: "close-together-portrait", width: 1057, height: 1600, alt: `${EVENT.groom} and ${EVENT.bride} leaning close together` },
+  { name: "standing-together-portrait", width: 1067, height: 1600, alt: `${EVENT.groom} in camouflage standing beside ${EVENT.bride} on a stool` },
+  { name: "seated-uniform-portrait", width: 1067, height: 1600, alt: `${EVENT.bride} standing beside a seated ${EVENT.groom} in camouflage and a beret` },
+  { name: "playful-embrace-portrait", width: 1067, height: 1600, alt: `${EVENT.bride} hugging ${EVENT.groom} from behind with one foot lifted` },
+  { name: "seated-together-landscape", width: 1600, height: 1067, alt: `${EVENT.groom} and ${EVENT.bride} sitting together on a stool and a white block` },
+  { name: "gentle-kiss-portrait", width: 1067, height: 1600, alt: `${EVENT.groom} giving ${EVENT.bride} a gentle kiss on the side of her head` },
+  { name: "side-by-side-portrait", width: 1067, height: 1600, alt: `${EVENT.groom} and ${EVENT.bride} posing side by side on stools` },
+  { name: "shared-glance-landscape", width: 1600, height: 1067, alt: `${EVENT.groom} and ${EVENT.bride} exchanging a smile across a table` },
 ];
 
 export default function Gallery() {
@@ -152,7 +153,7 @@ export default function Gallery() {
         className="gallery-viewport"
         ref={viewport}
         role="region"
-        aria-label="James and Renalyn photo gallery"
+        aria-label={`${EVENT.groom} and ${EVENT.bride} photo gallery`}
         aria-describedby="gallery-help"
         tabIndex={0}
         onMouseEnter={() => setHovered(true)}
@@ -180,7 +181,7 @@ export default function Gallery() {
                     }}
                   >
                     <Image
-                      src={`/gallery/james-renalyn-${photo.name}.webp`}
+                      src={`${MEDIA.galleryPrefix}${photo.name}.webp`}
                       alt={copy !== 1 ? "" : photo.alt}
                       width={photo.width}
                       height={photo.height}
@@ -244,7 +245,7 @@ export default function Gallery() {
               >
                 <Image
                   key={selectedPhoto.name}
-                  src={`/gallery/james-renalyn-${selectedPhoto.name}.webp`}
+                  src={`${MEDIA.galleryPrefix}${selectedPhoto.name}.webp`}
                   alt={selectedPhoto.alt}
                   width={selectedPhoto.width}
                   height={selectedPhoto.height}

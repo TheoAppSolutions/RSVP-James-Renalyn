@@ -31,7 +31,7 @@ export default function Home() {
         </section>
         <footer className="site-footer">
           <div className="footer-mark">{EVENT.initials}</div>
-          <p>{EVENT.dateFooter} <span aria-hidden="true">·</span> Tacloban City</p>
+          <p>{EVENT.dateFooter} <span aria-hidden="true">·</span> {EVENT.venue.city}</p>
           <p>Made with love, for the people we love.</p>
           <a href="#top">Back to top ↑</a>
         </footer>

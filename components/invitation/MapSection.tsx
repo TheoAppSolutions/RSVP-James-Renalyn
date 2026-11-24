@@ -14,7 +14,7 @@ export default function MapSection() {
       <div className="section-wrap">
         <div className="section-heading split-heading">
           <div><span className="eyebrow">01 / The celebration</span><h2 id="venues-title" className="display-heading">Where our story <em>continues</em></h2></div>
-          <p>One beautiful day together in Tacloban City.</p>
+          <p>One beautiful day together in {EVENT.venue.city}.</p>
         </div>
         <div className="venue-layout">
           <div className="venue-list" role="tablist" aria-label="Wedding venue">

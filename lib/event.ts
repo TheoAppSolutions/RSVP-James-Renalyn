@@ -12,7 +12,7 @@ export const EVENT = {
   dateISO: "2026-12-10T11:00:00+08:00",
   color: "Olive green, moss green, sage green, and off-white",
   dressCode: "Casual / Semi-formal",
-  venue: { label: "Wedding venue", name: "Ritz Tower de Leye", address: "Real St., Tacloban City" },
+  venue: { label: "Wedding venue", name: "Ritz Tower de Leye", address: "Real St., Tacloban City", city: "Tacloban City" },
 };
 
 export const VENUES = [EVENT.venue] as const;
@@ -20,4 +20,5 @@ export const EVENT_TIMESTAMP = new Date(EVENT.dateISO).getTime();
 
 export const MEDIA = {
   hero: "/hero.webp",
+  galleryPrefix: "/gallery/james-renalyn-",
 };
