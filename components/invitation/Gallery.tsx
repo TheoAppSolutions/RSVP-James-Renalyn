@@ -18,7 +18,6 @@ const photos = [
   { name: "seated-together-landscape", width: 1600, height: 1067, alt: "James and Renalyn sitting together on a stool and a white block" },
   { name: "gentle-kiss-portrait", width: 1067, height: 1600, alt: "James giving Renalyn a gentle kiss on the side of her head" },
   { name: "side-by-side-portrait", width: 1067, height: 1600, alt: "James and Renalyn posing side by side on stools" },
-  { name: "shoulder-embrace-portrait", width: 1067, height: 1600, alt: "Renalyn resting her arms around James's shoulders" },
   { name: "shared-glance-landscape", width: 1600, height: 1067, alt: "James and Renalyn exchanging a smile across a table" },
 ];
 
