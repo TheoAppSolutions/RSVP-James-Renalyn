@@ -23,9 +23,10 @@ const photos = [
 
 export default function Gallery() {
   const viewport = useRef<HTMLDivElement>(null);
-  const firstGroup = useRef<HTMLUListElement>(null);
+  const primaryGroup = useRef<HTMLUListElement>(null);
   const lightbox = useRef<HTMLDialogElement>(null);
   const [selectedPhoto, setSelectedPhoto] = useState<(typeof photos)[number] | null>(null);
+  const selectedPhotoIndex = selectedPhoto ? photos.indexOf(selectedPhoto) : -1;
   const lightboxOpen = selectedPhoto !== null;
   const [paused, setPaused] = useState(false);
   const [hovered, setHovered] = useState(false);
@@ -36,9 +37,46 @@ export default function Gallery() {
   function navigatePhoto(direction: number) {
     requestMusicPlayback();
     setSelectedPhoto((photo) => photo
-      ? photos[(photos.indexOf(photo) + direction + photos.length) % photos.length]
+      ? photos[Math.max(0, Math.min(photos.length - 1, photos.indexOf(photo) + direction))]
       : null);
   }
+
+  useEffect(() => {
+    const scroller = viewport.current;
+    const group = primaryGroup.current;
+    if (!scroller || !group) return;
+
+    let loopWidth = 0;
+
+    const wrapScroll = () => {
+      if (loopWidth <= 0) return;
+      const position = scroller.scrollLeft;
+      // Keep manual scrolling in the middle copy, with matching photos on both sides.
+      if (position < loopWidth || position >= loopWidth * 2) {
+        scroller.scrollLeft = loopWidth + ((position - loopWidth) % loopWidth + loopWidth) % loopWidth;
+      }
+    };
+
+    const resize = () => {
+      const width = group.getBoundingClientRect().width;
+      if (width <= 0) return;
+      const progress = loopWidth > 0
+        ? ((scroller.scrollLeft - loopWidth) % loopWidth + loopWidth) % loopWidth / loopWidth
+        : 0;
+      loopWidth = width;
+      scroller.scrollLeft = loopWidth * (1 + progress);
+    };
+
+    resize();
+    scroller.addEventListener("scroll", wrapScroll, { passive: true });
+    const observer = new ResizeObserver(resize);
+    observer.observe(group);
+
+    return () => {
+      scroller.removeEventListener("scroll", wrapScroll);
+      observer.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     const dialog = lightbox.current;
@@ -64,21 +102,21 @@ export default function Gallery() {
 
   useEffect(() => {
     const scroller = viewport.current;
-    const group = firstGroup.current;
+    const group = primaryGroup.current;
     if (!scroller || !group || lightboxOpen || paused || hovered || focused || touching || reducedMotion
       || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     let frame: number;
     let previousTime: number | undefined;
-    let position = scroller.scrollLeft;
 
     function advance(time: number) {
       if (previousTime !== undefined && scroller && group) {
         // Cap the delta so returning to a background tab never jumps ahead.
-        position += Math.min(time - previousTime, 64) * 0.032;
         const loopWidth = group.getBoundingClientRect().width;
-        if (loopWidth > 0) position %= loopWidth;
-        scroller.scrollLeft = position;
+        if (loopWidth > 0) {
+          const position = scroller.scrollLeft + Math.min(time - previousTime, 64) * 0.032;
+          scroller.scrollLeft = loopWidth + ((position - loopWidth) % loopWidth + loopWidth) % loopWidth;
+        }
       }
       previousTime = time;
       frame = window.requestAnimationFrame(advance);
@@ -126,8 +164,8 @@ export default function Gallery() {
         onTouchCancel={() => setTouching(false)}
       >
         <div className="gallery-track">
-          {[false, true].map((duplicate) => (
-            <ul key={String(duplicate)} className="gallery-group" ref={duplicate ? undefined : firstGroup} aria-hidden={duplicate || undefined}>
+          {[0, 1, 2].map((copy) => (
+            <ul key={copy} className="gallery-group" ref={copy === 1 ? primaryGroup : undefined} aria-hidden={copy !== 1 || undefined}>
               {photos.map((photo) => (
                 <li key={photo.name} className="gallery-frame" style={{ aspectRatio: `${photo.width} / ${photo.height}` }}>
                   <button
@@ -135,7 +173,7 @@ export default function Gallery() {
                     className="gallery-photo"
                     aria-label={`Enlarge photo: ${photo.alt}`}
                     aria-haspopup="dialog"
-                    tabIndex={duplicate ? -1 : undefined}
+                    tabIndex={copy !== 1 ? -1 : undefined}
                     onClick={() => {
                       requestMusicPlayback();
                       setSelectedPhoto(photo);
@@ -143,7 +181,7 @@ export default function Gallery() {
                   >
                     <Image
                       src={`/gallery/james-renalyn-${photo.name}.webp`}
-                      alt={duplicate ? "" : photo.alt}
+                      alt={copy !== 1 ? "" : photo.alt}
                       width={photo.width}
                       height={photo.height}
                       sizes={photo.width > photo.height ? "(max-width: 560px) 420px, (max-width: 800px) 540px, 660px" : "(max-width: 560px) 187px, (max-width: 800px) 240px, 294px"}
@@ -178,7 +216,7 @@ export default function Gallery() {
         {selectedPhoto && (
           <>
             <div className="gallery-lightbox-toolbar">
-              <span className="gallery-lightbox-counter">{photos.indexOf(selectedPhoto) + 1} / {photos.length}</span>
+              <span className="gallery-lightbox-counter">{selectedPhotoIndex + 1} / {photos.length}</span>
               <button type="button" autoFocus aria-label="Close photo" onClick={() => setSelectedPhoto(null)}>
                 Close <span aria-hidden="true">×</span>
               </button>
@@ -193,6 +231,7 @@ export default function Gallery() {
                 type="button"
                 className="gallery-lightbox-nav gallery-lightbox-prev"
                 aria-label="Previous photo"
+                disabled={selectedPhotoIndex === 0}
                 onClick={() => navigatePhoto(-1)}
               >
                 <span aria-hidden="true">‹</span>
@@ -217,6 +256,7 @@ export default function Gallery() {
                 type="button"
                 className="gallery-lightbox-nav gallery-lightbox-next"
                 aria-label="Next photo"
+                disabled={selectedPhotoIndex === photos.length - 1}
                 onClick={() => navigatePhoto(1)}
               >
                 <span aria-hidden="true">›</span>

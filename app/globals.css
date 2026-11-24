@@ -169,7 +169,7 @@ html { scroll-behavior: smooth; }
 .wedding-site .gallery-toggle span { font-size: 20px; line-height: 1; }
 .wedding-site .gallery-toggle:hover { color: var(--muted); }
 .wedding-site .gallery-toggle:disabled { color: var(--muted); cursor: default; }
-.wedding-site .gallery-viewport { width: 100%; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; overscroll-behavior-x: contain; }
+.wedding-site .gallery-viewport { width: 100%; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; overscroll-behavior-x: contain; overflow-anchor: none; scroll-behavior: auto; }
 .wedding-site .gallery-viewport::-webkit-scrollbar { display: none; }
 .wedding-site .gallery-viewport:focus-visible { outline-offset: -4px; }
 .wedding-site .gallery-track { display: flex; width: max-content; }
@@ -191,7 +191,8 @@ html { scroll-behavior: smooth; }
 .wedding-site .gallery-lightbox-photo { display: block; flex: none; width: fit-content; margin: auto; }
 .wedding-site .gallery-lightbox-photo img { display: block; width: auto; height: auto; max-width: calc(100vw - 48px); max-height: calc(100dvh - 112px); object-fit: contain; }
 .wedding-site .gallery-lightbox-nav { position: absolute; top: 50%; z-index: 1; display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border: 1px solid #ffffff4a; border-radius: 50%; background: #152018d9; color: #fff; transform: translateY(-50%); }
-.wedding-site .gallery-lightbox-nav:hover { background: #3b4e3e; }
+.wedding-site .gallery-lightbox-nav:hover:not(:disabled) { background: #3b4e3e; }
+.wedding-site .gallery-lightbox-nav:disabled { opacity: .3; cursor: default; }
 .wedding-site .gallery-lightbox-nav span { font-size: 36px; line-height: 1; }
 .wedding-site .gallery-lightbox-prev { left: 0; }
 .wedding-site .gallery-lightbox-next { right: 0; }
