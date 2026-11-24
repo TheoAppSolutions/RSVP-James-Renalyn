@@ -228,36 +228,13 @@ html { scroll-behavior: smooth; }
 .wedding-site .rsvp-intro .display-heading { max-width: 470px; font-size: clamp(55px, 6vw, 88px); }
 .wedding-site .rsvp-intro > p { max-width: 390px; margin-top: 27px; color: #dce3cf; font-size: 15px; line-height: 1.85; }
 .wedding-site .rsvp-monogram { margin-top: 75px; color: #bdccb3; font-family: var(--font-serif), Georgia, serif; font-size: 70px; font-weight: 300; letter-spacing: -.06em; }
-.wedding-site .rsvp-form { padding: 48px; background: #fbfaf7; color: var(--ink); }
-.wedding-site .rsvp-form h3 { margin: 8px 0 34px; font-family: var(--font-serif), Georgia, serif; font-size: 48px; font-weight: 400; line-height: 1; }
-.wedding-site .form-field { display: block; margin-top: 25px; border: 0; padding: 0; }
-.wedding-site .form-field label, .wedding-site .form-field legend { color: var(--ink); font-size: 10px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
-.wedding-site .form-field label span:not(.optional), .wedding-site .form-field legend span { color: var(--gold); }
-.wedding-site .form-field input:not([type="radio"]), .wedding-site .form-field textarea { display: block; width: 100%; margin-top: 12px; border: 1px solid #d9d8d1; border-radius: 0; padding: 14px 16px; background: #fff; color: var(--ink); font-size: 13px; letter-spacing: 0; outline: 0; }
-.wedding-site .form-field input:focus, .wedding-site .form-field textarea:focus { border-color: var(--gold); }
-.wedding-site .form-field input::placeholder, .wedding-site .form-field textarea::placeholder { color: #9aa2a1; }
-.wedding-site .form-field textarea { resize: vertical; }
-.wedding-site .attendance-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 13px; }
-.wedding-site .attendance-choices label { display: flex; align-items: center; gap: 12px; min-height: 77px; border: 1px solid #d9d8d1; padding: 10px 14px; background: white; cursor: pointer; letter-spacing: 0; text-transform: none; }
-.wedding-site .attendance-choices label.selected { border-color: var(--ink); background: #e9edea; }
-.wedding-site .attendance-choices input { position: absolute; opacity: 0; width: 1px; height: 1px; }
-.wedding-site .attendance-choices label:has(input:focus-visible) { outline: 2px solid var(--gold); outline-offset: 2px; }
-.wedding-site .choice-icon { color: var(--gold) !important; font-family: var(--font-serif), Georgia, serif; font-size: 30px; font-weight: 300; }
-.wedding-site .attendance-choices strong { display: block; font-family: var(--font-serif), Georgia, serif; font-size: 19px; font-weight: 400; line-height: 1.1; }
-.wedding-site .attendance-choices small { display: block; margin-top: 5px; color: var(--muted); font-size: 10px; }
-.wedding-site .form-label-row { display: flex; justify-content: space-between; gap: 10px; align-items: end; }
-.wedding-site .form-label-row small { color: var(--muted); font-size: 10px; }
-.wedding-site .optional { color: var(--muted); font-size: 9px; letter-spacing: .04em; text-transform: none; }
-.wedding-site .field-error, .wedding-site .form-error { margin-top: 8px; color: #a23f37; font-size: 12px; line-height: 1.5; }
-.wedding-site .form-submit { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-top: 28px; padding: 17px 19px; background: var(--ink); color: white; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; transition: background .2s; }
-.wedding-site .form-submit:hover:not(:disabled) { background: #4c603b; }
-.wedding-site .form-submit:disabled { opacity: .6; cursor: wait; }
-.wedding-site .form-submit span { font-size: 18px; line-height: 1; }
-.wedding-site .form-footnote { margin-top: 18px; color: var(--muted); font-size: 10px; text-align: center; }
-.wedding-site .rsvp-success { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 500px; text-align: center; }
-.wedding-site .rsvp-success .success-symbol { margin-bottom: 18px; color: var(--gold); font-family: var(--font-serif), Georgia, serif; font-size: 52px; }
-.wedding-site .rsvp-success h3 { margin-top: 14px; font-size: 44px; }
-.wedding-site .rsvp-success p { max-width: 360px; color: var(--muted); font-size: 14px; line-height: 1.8; }
+.wedding-site .rsvp-dashboard { padding: 48px; background: #fbfaf7; color: var(--ink); }
+.wedding-site .rsvp-dashboard h3 { margin: 8px 0 24px; font-family: var(--font-serif), Georgia, serif; font-size: 48px; font-weight: 400; line-height: 1.1; }
+.wedding-site .rsvp-dashboard p { color: var(--muted); font-size: 14px; line-height: 1.8; }
+.wedding-site .dashboard-button { display: flex; align-items: center; justify-content: space-between; gap: 20px; width: 100%; margin-top: 28px; padding: 17px 19px; background: var(--ink); color: white; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; transition: background .2s; }
+.wedding-site .dashboard-button:hover { background: #4c603b; }
+.wedding-site .dashboard-button:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+.wedding-site .dashboard-button span { font-size: 18px; line-height: 1; }
 .wedding-site .site-footer { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 65px 20px 50px; background: var(--paper); text-align: center; }
 .wedding-site .footer-mark { margin-bottom: 8px; font-family: var(--font-serif), Georgia, serif; font-size: 48px; letter-spacing: -.06em; line-height: 1; }
 .wedding-site .site-footer p { color: var(--muted); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
@@ -334,13 +311,8 @@ html { scroll-behavior: smooth; }
   .wedding-site .details-list summary { grid-template-columns: 31px 1fr 20px; gap: 8px; }
   .wedding-site .details-list summary strong { font-size: 23px; }
   .wedding-site .details-list details > p { margin-left: 39px; margin-right: 18px; }
-  .wedding-site .rsvp-form { padding: 28px 20px; }
-  .wedding-site .rsvp-form h3 { font-size: 40px; }
-  .wedding-site .attendance-choices { gap: 8px; }
-  .wedding-site .attendance-choices { grid-template-columns: 1fr; }
-  .wedding-site .attendance-choices label { gap: 6px; padding: 8px; }
-  .wedding-site .attendance-choices strong { font-size: 16px; }
-  .wedding-site .choice-icon { font-size: 24px; }
+  .wedding-site .rsvp-dashboard { padding: 28px 20px; }
+  .wedding-site .rsvp-dashboard h3 { font-size: 40px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

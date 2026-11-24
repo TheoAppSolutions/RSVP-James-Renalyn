@@ -25,7 +25,7 @@ export default function Hero() {
           <a href="#good-to-know">Good to know</a>
           <a href="#rsvp">RSVP</a>
         </div>
-        <button type="button" onClick={goToRsvp} className="nav-rsvp">Reply <span aria-hidden="true">↗</span></button>
+        <button type="button" onClick={goToRsvp} className="nav-rsvp">Responses <span aria-hidden="true">↗</span></button>
       </nav>
 
       <div className="hero-content">
@@ -41,7 +41,7 @@ export default function Hero() {
           </p>
         </div>
         <div className="hero-action-row">
-          <button type="button" onClick={goToRsvp} className="primary-link">Kindly RSVP <span aria-hidden="true">↗</span></button>
+          <button type="button" onClick={goToRsvp} className="primary-link">View guest responses <span aria-hidden="true">↗</span></button>
         </div>
       </div>
 

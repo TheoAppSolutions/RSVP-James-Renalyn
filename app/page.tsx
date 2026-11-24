@@ -5,7 +5,7 @@ import MapSection from "@/components/invitation/MapSection";
 import Attire from "@/components/invitation/Attire";
 import GoodToKnow from "@/components/invitation/GoodToKnow";
 import Gallery from "@/components/invitation/Gallery";
-import RsvpForm from "@/components/invitation/RsvpForm";
+import RsvpDashboardLink from "@/components/invitation/RsvpDashboardLink";
 import { EVENT } from "@/lib/event";
 
 export default function Home() {
@@ -22,11 +22,11 @@ export default function Home() {
           <div className="rsvp-section-inner">
             <div className="rsvp-intro">
               <span className="eyebrow light">The celebration is better with you</span>
-              <h2 id="rsvp-title" className="display-heading">The pleasure of your <em>company</em></h2>
-              <p>We would be honored to celebrate this day with you. Kindly reply by {EVENT.rsvpDeadline}.</p>
+              <h2 id="rsvp-title" className="display-heading">Celebrating with <em>you</em></h2>
+              <p>Thank you for being part of our story. View the guest responses and wishes for our celebration.</p>
               <div className="rsvp-monogram" aria-hidden="true">{EVENT.initials}</div>
             </div>
-            <RsvpForm />
+            <RsvpDashboardLink />
           </div>
         </section>
         <footer className="site-footer">

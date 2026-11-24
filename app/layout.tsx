@@ -8,7 +8,7 @@ const sans = localFont({ src: "../fonts/jost-latin.woff2", weight: "300 500", va
 
 export const metadata: Metadata = {
   title: `${EVENT.honoree} — Wedding RSVP`,
-  description: `Celebrate with ${EVENT.honoree} on ${EVENT.dateFooter} at ${EVENT.venue.name}, ${EVENT.venue.address}. RSVP by ${EVENT.rsvpDeadline}.`,
+  description: `Celebrate with ${EVENT.honoree} on ${EVENT.dateFooter} at ${EVENT.venue.name}, ${EVENT.venue.address}. View guest responses and wedding wishes.`,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

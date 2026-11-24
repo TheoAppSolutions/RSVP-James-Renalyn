@@ -37,9 +37,9 @@ export default function GoodToKnow() {
           <h2 id="good-to-know-title" className="display-heading">Good to <em>know</em></h2>
           <p>Everything you need to plan for the celebration.</p>
           <div className="reply-note">
-            <strong>Kindly reply by<br />{EVENT.rsvpDeadline}</strong>
-            <span>We would love to know if you can join us.</span>
-            <a href="#rsvp">Confirm attendance ↗</a>
+            <strong>Guest responses</strong>
+            <span>Thank you for celebrating with us.</span>
+            <a href="/admin/">View guest responses ↗</a>
           </div>
         </div>
         <div className="details-list">
