@@ -9,30 +9,10 @@ import { ATTIRE, createSwatches } from "@/lib/attire";
 const swatches = createSwatches(COLORS);
 
 export default function Attire() {
-  const [selected, setSelected] = useState<(typeof swatches)[number]>(swatches[2]);
-  const isOffWhite = selected.name === "Off-white";
+  const [selected, setSelected] = useState<(typeof swatches)[number]>(swatches[1]);
 
   return (
     <section id="attire" className="attire-section section-pad" aria-labelledby="attire-title">
-      <svg className="attire-filter-defs" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-        <filter id="attire-recolor" colorInterpolationFilters="sRGB">
-          <feColorMatrix in="SourceGraphic" type="matrix" values={`0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  ${isOffWhite ? "-12 0 12" : "-4 0 4"} 0 0`} result="blue-mask" />
-          <feFlood floodColor={selected.color} floodOpacity={isOffWhite ? 1 : 0.78} result="selected-color" />
-          {isOffWhite && (
-            <>
-              <feColorMatrix in="SourceGraphic" type="saturate" values="0" result="fabric-shading" />
-              <feComponentTransfer in="fabric-shading" result="light-fabric">
-                <feFuncR type="linear" slope="0.75" intercept="0.25" />
-                <feFuncG type="linear" slope="0.75" intercept="0.25" />
-                <feFuncB type="linear" slope="0.75" intercept="0.25" />
-              </feComponentTransfer>
-              <feBlend in="selected-color" in2="light-fabric" mode="multiply" result="shaded-off-white" />
-            </>
-          )}
-          <feComposite in={isOffWhite ? "shaded-off-white" : "selected-color"} in2="blue-mask" operator="in" result="tinted-clothing" />
-          <feBlend in="tinted-clothing" in2="SourceGraphic" mode="normal" />
-        </filter>
-      </svg>
       <div className="section-wrap attire-layout">
         <div className="attire-copy">
           <span className="eyebrow">02 / What to wear</span>
@@ -45,9 +25,9 @@ export default function Attire() {
           <p className="swatch-feedback" aria-live="polite">Previewing <strong>{selected.name}</strong> attire</p>
         </div>
         <div className="attire-examples">
-          {ATTIRE.map(({ label, note, image, alt }) => (
+          {ATTIRE.map(({ label, note, images, alt }) => (
             <figure key={label}>
-              <div><Image src={image} alt={`${alt} previewed in ${selected.name.toLowerCase()}`} width={1536} height={1024} sizes="(min-width: 900px) 25vw, 50vw" className="recolor-attire" /></div>
+              <div><Image key={selected.variant} src={images[selected.variant]} alt={`${alt} previewed in ${selected.name.toLowerCase()}`} width={1536} height={1024} unoptimized /></div>
               <figcaption><strong>{label}</strong><span>{note}</span></figcaption>
             </figure>
           ))}

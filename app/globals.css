@@ -137,7 +137,6 @@ html { scroll-behavior: smooth; }
 
 /* Attire */
 .wedding-site .attire-section { background: var(--paper); }
-.wedding-site .attire-filter-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 .wedding-site .attire-layout { display: grid; grid-template-columns: .8fr 1.2fr; align-items: center; gap: 65px; }
 .wedding-site .attire-copy { max-width: 470px; }
 .wedding-site .attire-type { margin: 35px 0 18px; border-left: 2px solid var(--gold); padding-left: 18px; font-family: var(--font-serif), Georgia, serif; font-size: 27px; font-style: italic; }
@@ -152,10 +151,9 @@ html { scroll-behavior: smooth; }
 .wedding-site .swatch-feedback { margin-top: 20px; color: var(--muted); font-size: 11px; }
 .wedding-site .swatch-feedback strong { color: var(--ink); font-weight: 500; }
 .wedding-site .attire-examples { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-.wedding-site .attire-examples figure { background: #e0d6d3; }
-.wedding-site .attire-examples figure > div { display: flex; align-items: center; aspect-ratio: 3/4; overflow: hidden; }
-.wedding-site .attire-examples img { width: 100%; height: 100%; object-fit: contain; transition: filter .3s ease; }
-.wedding-site .attire-examples img.recolor-attire { filter: url(#attire-recolor); }
+.wedding-site .attire-examples figure { background: var(--paper); }
+.wedding-site .attire-examples figure > div { display: flex; align-items: center; aspect-ratio: 3/2; overflow: hidden; }
+.wedding-site .attire-examples img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .wedding-site .attire-examples figcaption { display: flex; flex-direction: column; min-height: 105px; padding: 19px 20px; background: white; }
 .wedding-site .attire-examples figcaption strong { font-family: var(--font-serif), Georgia, serif; font-size: 24px; font-weight: 400; }
 .wedding-site .attire-examples figcaption span { margin-top: 6px; color: var(--muted); font-size: 11px; line-height: 1.5; }
@@ -310,7 +308,6 @@ html { scroll-behavior: smooth; }
   .wedding-site .venue-map { min-height: 420px; }
   .wedding-site .venue-note { padding-bottom: 10px; }
   .wedding-site .attire-copy { max-width: none; }
-  .wedding-site .attire-examples figure > div { aspect-ratio: 1/1; }
   .wedding-site .details-intro > p { max-width: none; }
   .wedding-site .reply-note { margin-top: 30px; }
   .wedding-site .rsvp-monogram { display: none; }

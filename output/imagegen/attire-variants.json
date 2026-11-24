@@ -1,0 +1,42 @@
+{
+  "mode": "built-in imagegen",
+  "format": "WebP, quality 94",
+  "variants": [
+    {
+      "gender": "men",
+      "variant": "off-white",
+      "prompt": "Use case: precise-object-edit. Edit target: supplied men's wedding attire illustration. Change the sage green CLOTHING ONLY to warm off-white ivory, target midtone #F4F0E6. Recolor ONLY the left man's sage shirt, the second man's sage trousers, and the third man's sage suit. Preserve the fourth man's dark charcoal trousers and every existing ivory/off-white garment unchanged. Preserve all FOUR people exactly, their full-length poses, faceless portrait style, skin, hair, bags, jewelry, shoes, fabric folds, texture, highlights and natural shadows. Keep the same 1536x1024 landscape composition, with every head and shoe fully visible. Maintain a clean uniform warm ivory #F8F8F2 background. Clean precise garment edges, smooth natural antialiasing, no scattered colored pixels, no colored halos, no blocks or speckles on skin, hair, accessories or background. Preserve transparent chiffon correctly for women. No added text, no new objects, no layout changes, no extra panels.",
+      "saved_path": "/Users/fdc-lemuel-nc-web/Documents/GitHub/RSVP-James-Renalyn/public/attire-men-off-white.webp"
+    },
+    {
+      "gender": "men",
+      "variant": "olive",
+      "prompt": "Use case: precise-object-edit. Edit target: supplied men's wedding attire illustration. Change the sage green CLOTHING ONLY to muted olive green, target midtone #929F72. Recolor ONLY the left man's sage shirt, the second man's sage trousers, and the third man's sage suit. Preserve the fourth man's dark charcoal trousers and every existing ivory/off-white garment unchanged. Preserve all FOUR people exactly, their full-length poses, faceless portrait style, skin, hair, bags, jewelry, shoes, fabric folds, texture, highlights and natural shadows. Keep the same 1536x1024 landscape composition, with every head and shoe fully visible. Maintain a clean uniform warm ivory #F8F8F2 background. Clean precise garment edges, smooth natural antialiasing, no scattered colored pixels, no colored halos, no blocks or speckles on skin, hair, accessories or background. Preserve transparent chiffon correctly for women. No added text, no new objects, no layout changes, no extra panels.",
+      "saved_path": "/Users/fdc-lemuel-nc-web/Documents/GitHub/RSVP-James-Renalyn/public/attire-men-olive.webp"
+    },
+    {
+      "gender": "men",
+      "variant": "moss",
+      "prompt": "Use case: precise-object-edit. Edit target: supplied men's wedding attire illustration. Change the sage green CLOTHING ONLY to muted moss green, target midtone #76845A. Recolor ONLY the left man's sage shirt, the second man's sage trousers, and the third man's sage suit. Preserve the fourth man's dark charcoal trousers and every existing ivory/off-white garment unchanged. Preserve all FOUR people exactly, their full-length poses, faceless portrait style, skin, hair, bags, jewelry, shoes, fabric folds, texture, highlights and natural shadows. Keep the same 1536x1024 landscape composition, with every head and shoe fully visible. Maintain a clean uniform warm ivory #F8F8F2 background. Clean precise garment edges, smooth natural antialiasing, no scattered colored pixels, no colored halos, no blocks or speckles on skin, hair, accessories or background. Preserve transparent chiffon correctly for women. No added text, no new objects, no layout changes, no extra panels.",
+      "saved_path": "/Users/fdc-lemuel-nc-web/Documents/GitHub/RSVP-James-Renalyn/public/attire-men-moss.webp"
+    },
+    {
+      "gender": "women",
+      "variant": "off-white",
+      "prompt": "Use case: precise-object-edit. Edit target: supplied women's wedding attire illustration. Change the sage green CLOTHING ONLY to warm off-white ivory, target midtone #F4F0E6. Recolor ONLY the first woman's sage dress, the second woman's sage blouse, the third woman's sage wrap dress, and the fourth woman's sage chiffon dress. Preserve the second woman's ivory trousers unchanged. Preserve all FOUR people exactly, their full-length poses, faceless portrait style, skin, hair, bags, jewelry, shoes, fabric folds, texture, highlights and natural shadows. Keep the same 1536x1024 landscape composition, with every head and shoe fully visible. Maintain a clean uniform warm ivory #F8F8F2 background. Clean precise garment edges, smooth natural antialiasing, no scattered colored pixels, no colored halos, no blocks or speckles on skin, hair, accessories or background. Preserve transparent chiffon correctly for women. No added text, no new objects, no layout changes, no extra panels.",
+      "saved_path": "/Users/fdc-lemuel-nc-web/Documents/GitHub/RSVP-James-Renalyn/public/attire-women-off-white.webp"
+    },
+    {
+      "gender": "women",
+      "variant": "olive",
+      "prompt": "Use case: precise-object-edit. Edit target: supplied women's wedding attire illustration. Change the sage green CLOTHING ONLY to muted olive green, target midtone #929F72. Recolor ONLY the first woman's sage dress, the second woman's sage blouse, the third woman's sage wrap dress, and the fourth woman's sage chiffon dress. Preserve the second woman's ivory trousers unchanged. Preserve all FOUR people exactly, their full-length poses, faceless portrait style, skin, hair, bags, jewelry, shoes, fabric folds, texture, highlights and natural shadows. Keep the same 1536x1024 landscape composition, with every head and shoe fully visible. Maintain a clean uniform warm ivory #F8F8F2 background. Clean precise garment edges, smooth natural antialiasing, no scattered colored pixels, no colored halos, no blocks or speckles on skin, hair, accessories or background. Preserve transparent chiffon correctly for women. No added text, no new objects, no layout changes, no extra panels.",
+      "saved_path": "/Users/fdc-lemuel-nc-web/Documents/GitHub/RSVP-James-Renalyn/public/attire-women-olive.webp"
+    },
+    {
+      "gender": "women",
+      "variant": "moss",
+      "prompt": "Use case: precise-object-edit. Edit target: supplied women's wedding attire illustration. Change the sage green CLOTHING ONLY to muted moss green, target midtone #76845A. Recolor ONLY the first woman's sage dress, the second woman's sage blouse, the third woman's sage wrap dress, and the fourth woman's sage chiffon dress. Preserve the second woman's ivory trousers unchanged. Preserve all FOUR people exactly, their full-length poses, faceless portrait style, skin, hair, bags, jewelry, shoes, fabric folds, texture, highlights and natural shadows. Keep the same 1536x1024 landscape composition, with every head and shoe fully visible. Maintain a clean uniform warm ivory #F8F8F2 background. Clean precise garment edges, smooth natural antialiasing, no scattered colored pixels, no colored halos, no blocks or speckles on skin, hair, accessories or background. Preserve transparent chiffon correctly for women. No added text, no new objects, no layout changes, no extra panels.",
+      "saved_path": "/Users/fdc-lemuel-nc-web/Documents/GitHub/RSVP-James-Renalyn/public/attire-women-moss.webp"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+Mode: built-in imagegen; precise-object-edit.
+
+Men
+Edit target: public/attire-men.webp (original dusty blue version).
+Change ONLY the dusty blue clothing to muted natural sage green (approximately #A8B59A midtones, pale #BDCCB3 highlights). Recolor the left man's blue collared shirt, the second man's blue trousers, and the third man's blue suit. Preserve the fourth man's dark charcoal trousers, all ivory/off-white garments, skin, hair, accessories, poses, detailed fabric texture, lighting and exact composition of all FOUR full-length figures. Replace the background with a completely uniform solid warm ivory #F8F8F2 all the way to all four edges; no large background rectangles, no bands, no vignettes, no panels, no hard horizontal edges. Keep only subtle natural contact shadows at the shoes. Preserve landscape 3:2 composition and all four figures fully visible including shoes. No text, logos or added objects.
+
+Women
+Edit target: public/attire-women.webp (original dusty blue version).
+Change ONLY all dusty blue garments to muted natural sage green (approximately #A8B59A midtones, pale #BDCCB3 highlights): the first woman's dress, the second woman's blouse, the third woman's wrap dress and fourth woman's chiffon dress. Keep the second woman's ivory trousers and all skin, hair, accessories, bags, jewelry, shoes, poses, detailed fabric textures, lighting and exact composition of all FOUR full-length figures unchanged. Replace the background with a completely uniform solid warm ivory #F8F8F2 all the way to all four edges; no large background rectangles, no bands, no vignettes, no panels, no hard horizontal edges. Keep only subtle natural contact shadows at the shoes. Preserve landscape 3:2 composition and all four figures fully visible including shoes. No text, logos or added objects.
+
+Final assets: public/attire-men.webp and public/attire-women.webp.
+Generated PNGs were converted to WebP with cwebp, quality 90.
