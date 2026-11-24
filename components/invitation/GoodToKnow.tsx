@@ -24,7 +24,7 @@ const NOTES = [
   {
     category: "Occasion focus",
     question: "Today is about the couple",
-    answer: "Please save proposals, pregnancy announcements, and other major announcements for another occasion. Today is dedicated to celebrating Raymund and Vanessa.",
+    answer: "Please save proposals, pregnancy announcements, and other major announcements for another occasion. Today is dedicated to celebrating James and Renalyn.",
   },
 ];
 

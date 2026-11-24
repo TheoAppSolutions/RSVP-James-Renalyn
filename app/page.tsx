@@ -1,4 +1,5 @@
 import Hero from "@/components/invitation/Hero";
+import MusicPlayer from "@/components/invitation/MusicPlayer";
 import Countdown from "@/components/invitation/Countdown";
 import MapSection from "@/components/invitation/MapSection";
 import Attire from "@/components/invitation/Attire";
@@ -11,6 +12,7 @@ export default function Home() {
   return (
       <main className="wedding-site">
         <Hero />
+        <MusicPlayer />
         <Countdown />
         <MapSection />
         <Attire />

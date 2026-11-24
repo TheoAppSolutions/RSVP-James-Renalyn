@@ -2,17 +2,20 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { requestMusicPlayback } from "@/lib/music";
 
 // Landscape frames punctuate the portraits; each frame keeps its image's ratio.
 const photos = [
   { name: "warm-embrace-portrait", width: 1067, height: 1600, alt: "James and Renalyn smiling in a warm embrace" },
   { name: "uniform-smiles-portrait", width: 1067, height: 1600, alt: "James and Renalyn sharing a playful smile in uniform" },
-  { name: "seated-embrace-portrait", width: 1067, height: 1600, alt: "Renalyn embracing James as he sits" },
+  { name: "seated-embrace-portrait", width: 1067, height: 1600, alt: "Renalyn embracing a seated James in camouflage" },
   { name: "dress-uniform-portrait", width: 1067, height: 1600, alt: "James standing in dress uniform beside a seated Renalyn" },
-  { name: "close-together-portrait", width: 1057, height: 1600, alt: "James and Renalyn leaning close together" },
   { name: "playful-moment-landscape", width: 1600, height: 1067, alt: "James pointing toward Renalyn as she smiles across the frame" },
+  { name: "close-together-portrait", width: 1057, height: 1600, alt: "James and Renalyn leaning close together" },
   { name: "standing-together-portrait", width: 1067, height: 1600, alt: "James in camouflage standing beside Renalyn on a stool" },
+  { name: "seated-uniform-portrait", width: 1067, height: 1600, alt: "Renalyn standing beside a seated James in camouflage and a beret" },
   { name: "playful-embrace-portrait", width: 1067, height: 1600, alt: "Renalyn hugging James from behind with one foot lifted" },
+  { name: "seated-together-landscape", width: 1600, height: 1067, alt: "James and Renalyn sitting together on a stool and a white block" },
   { name: "gentle-kiss-portrait", width: 1067, height: 1600, alt: "James giving Renalyn a gentle kiss on the side of her head" },
   { name: "side-by-side-portrait", width: 1067, height: 1600, alt: "James and Renalyn posing side by side on stools" },
   { name: "shoulder-embrace-portrait", width: 1067, height: 1600, alt: "Renalyn resting her arms around James's shoulders" },
@@ -22,11 +25,35 @@ const photos = [
 export default function Gallery() {
   const viewport = useRef<HTMLDivElement>(null);
   const firstGroup = useRef<HTMLUListElement>(null);
+  const lightbox = useRef<HTMLDialogElement>(null);
+  const [selectedPhoto, setSelectedPhoto] = useState<(typeof photos)[number] | null>(null);
+  const lightboxOpen = selectedPhoto !== null;
   const [paused, setPaused] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
   const [touching, setTouching] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+
+  function navigatePhoto(direction: number) {
+    requestMusicPlayback();
+    setSelectedPhoto((photo) => photo
+      ? photos[(photos.indexOf(photo) + direction + photos.length) % photos.length]
+      : null);
+  }
+
+  useEffect(() => {
+    const dialog = lightbox.current;
+    if (!dialog || !lightboxOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    dialog.showModal();
+
+    return () => {
+      dialog.close();
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [lightboxOpen]);
 
   useEffect(() => {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -39,7 +66,7 @@ export default function Gallery() {
   useEffect(() => {
     const scroller = viewport.current;
     const group = firstGroup.current;
-    if (!scroller || !group || paused || hovered || focused || touching || reducedMotion
+    if (!scroller || !group || lightboxOpen || paused || hovered || focused || touching || reducedMotion
       || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     let frame: number;
@@ -60,7 +87,7 @@ export default function Gallery() {
 
     frame = window.requestAnimationFrame(advance);
     return () => window.cancelAnimationFrame(frame);
-  }, [paused, hovered, focused, touching, reducedMotion]);
+  }, [lightboxOpen, paused, hovered, focused, touching, reducedMotion]);
 
   return (
     <section id="gallery" className="gallery-section section-pad" aria-labelledby="gallery-title">
@@ -82,7 +109,7 @@ export default function Gallery() {
           {reducedMotion ? "Auto-scroll off" : paused ? "Play gallery" : "Pause gallery"}
         </button>
       </div>
-      <p id="gallery-help" className="sr-only">Scroll or swipe to explore all twelve photos. Auto-scroll pauses while you hover, touch, or use the keyboard inside the gallery.</p>
+      <p id="gallery-help" className="sr-only">Scroll or swipe to explore all {photos.length} photos. Select a photo to view it full size. Auto-scroll pauses while you hover, touch, or use the keyboard inside the gallery.</p>
       <div
         id="gallery-carousel"
         className="gallery-viewport"
@@ -104,14 +131,26 @@ export default function Gallery() {
             <ul key={String(duplicate)} className="gallery-group" ref={duplicate ? undefined : firstGroup} aria-hidden={duplicate || undefined}>
               {photos.map((photo) => (
                 <li key={photo.name} className="gallery-frame" style={{ aspectRatio: `${photo.width} / ${photo.height}` }}>
-                  <Image
-                    src={`/gallery/james-renalyn-${photo.name}.webp`}
-                    alt={duplicate ? "" : photo.alt}
-                    width={photo.width}
-                    height={photo.height}
-                    sizes={photo.width > photo.height ? "(max-width: 560px) 420px, (max-width: 800px) 540px, 660px" : "(max-width: 560px) 187px, (max-width: 800px) 240px, 294px"}
-                    draggable={false}
-                  />
+                  <button
+                    type="button"
+                    className="gallery-photo"
+                    aria-label={`Enlarge photo: ${photo.alt}`}
+                    aria-haspopup="dialog"
+                    tabIndex={duplicate ? -1 : undefined}
+                    onClick={() => {
+                      requestMusicPlayback();
+                      setSelectedPhoto(photo);
+                    }}
+                  >
+                    <Image
+                      src={`/gallery/james-renalyn-${photo.name}.webp`}
+                      alt={duplicate ? "" : photo.alt}
+                      width={photo.width}
+                      height={photo.height}
+                      sizes={photo.width > photo.height ? "(max-width: 560px) 420px, (max-width: 800px) 540px, 660px" : "(max-width: 560px) 187px, (max-width: 800px) 240px, 294px"}
+                      draggable={false}
+                    />
+                  </button>
                 </li>
               ))}
             </ul>
@@ -119,6 +158,74 @@ export default function Gallery() {
         </div>
       </div>
       <p className="gallery-note">Little moments. A love for a lifetime.</p>
+      <dialog
+        ref={lightbox}
+        className="gallery-lightbox"
+        aria-label="Full-size gallery photo"
+        onCancel={(event) => {
+          event.preventDefault();
+          setSelectedPhoto(null);
+        }}
+        onKeyDown={(event) => {
+          if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+            event.preventDefault();
+            navigatePhoto(event.key === "ArrowLeft" ? -1 : 1);
+          }
+        }}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) setSelectedPhoto(null);
+        }}
+      >
+        {selectedPhoto && (
+          <>
+            <div className="gallery-lightbox-toolbar">
+              <span className="gallery-lightbox-counter">{photos.indexOf(selectedPhoto) + 1} / {photos.length}</span>
+              <button type="button" autoFocus aria-label="Close photo" onClick={() => setSelectedPhoto(null)}>
+                Close <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div
+              className="gallery-lightbox-stage"
+              onClick={(event) => {
+                if (event.target === event.currentTarget) setSelectedPhoto(null);
+              }}
+            >
+              <button
+                type="button"
+                className="gallery-lightbox-nav gallery-lightbox-prev"
+                aria-label="Previous photo"
+                onClick={() => navigatePhoto(-1)}
+              >
+                <span aria-hidden="true">‹</span>
+              </button>
+              <button
+                type="button"
+                className="gallery-lightbox-photo"
+                aria-label={`Play wedding music: ${selectedPhoto.alt}`}
+                onClick={requestMusicPlayback}
+              >
+                <Image
+                  key={selectedPhoto.name}
+                  src={`/gallery/james-renalyn-${selectedPhoto.name}.webp`}
+                  alt={selectedPhoto.alt}
+                  width={selectedPhoto.width}
+                  height={selectedPhoto.height}
+                  unoptimized
+                  draggable={false}
+                />
+              </button>
+              <button
+                type="button"
+                className="gallery-lightbox-nav gallery-lightbox-next"
+                aria-label="Next photo"
+                onClick={() => navigatePhoto(1)}
+              >
+                <span aria-hidden="true">›</span>
+              </button>
+            </div>
+          </>
+        )}
+      </dialog>
     </section>
   );
 }
