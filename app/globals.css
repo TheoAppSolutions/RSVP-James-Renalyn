@@ -269,7 +269,7 @@ html { scroll-behavior: smooth; }
 }
 @media (max-width: 800px) {
   .wedding-site .hero { min-height: max(980px, 100svh); }
-  .wedding-site .hero-image { object-position: 40% 10%; }
+  .wedding-site .hero-image { object-position: center 10%; }
   .wedding-site .hero-shade { background: linear-gradient(0deg, #1b291df2 0%, #1b291dbd 36%, #1b291d24 78%, #1b291d38 100%); }
   .wedding-site .site-nav { height: 70px; padding: 0 25px; }
   .wedding-site .nav-links { display: none; }
